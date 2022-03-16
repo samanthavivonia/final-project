@@ -6,9 +6,13 @@ class Button extends React.Component {
     this.state = {};
   }
 
+  handleClick(destination) {
+
+  }
+
   render(props) {
     return (
-      <button className={this.props.color}>
+      <button className={this.props.color} onClick={this.handleClick(this.props.destination)}>
         <i className={this.props.iconleft}/>
         {this.props.text}
         <i className={this.props.iconright}/>
