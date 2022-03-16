@@ -1,0 +1,175 @@
+$tagteam-default-blue: #544E8D;
+$tagteam-default-red: #C53943;
+$tagteam-default-yellow: #F4BE5A;
+$tagteam-default-green: #4A978B;
+
+$tagteam-default-white: #FFFFFF;
+$tagteam-default-gray100: #F2F2F2;
+$tagteam-default-gray200: #E0E0E0;
+$tagteam-default-gray300: #BDBDBD;
+$tagteam-default-gray400: #828282;
+$tagteam-default-gray500: #4F4F4F;
+$tagteam-default-gray600: #333333;
+$tagteam-default-black: #0F0F0F;
+
+$tagteam-default-success: #4A978B;
+$tagteam-default-danger: #C53943;
+
+$tagteam-default-serif: 'Domine', serif;
+$tagteam-default-sans-serif: 'Lato', sans-serif;
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  font-family: $tagteam-default-serif;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  margin: 0;
+  cursor: default;
+
+  &.big {
+    font-size: 10vw;
+  }
+
+  &.med {
+    font-size: 2.5rem;
+  }
+
+  &.smol {
+    font-size: 1.8rem;
+  }
+
+  .logo-letter {
+    position: relative;
+    bottom: 0;
+    transition: 50ms;
+
+    &.blue {
+      color: $tagteam-default-blue;
+    }
+    &.red {
+      color: $tagteam-default-red;
+    }
+    &.yellow {
+      color: $tagteam-default-yellow;
+    }
+    &.green {
+      color: $tagteam-default-green;
+    }
+  }
+
+  .logo-letter:hover {
+    bottom: 10%;
+  }
+}
+
+button {
+  min-width: 12.5rem;
+  font-family: $tagteam-default-sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.1rem;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  position: relative;
+  bottom: 0;
+  transition: 50ms;
+  cursor: pointer;
+
+  &.black {
+    background-color: $tagteam-default-black;
+    &:hover {
+      background-color: lighten($tagteam-default-black, 20%);
+    }
+    &:active {
+      background-color: $tagteam-default-black;
+    }
+  }
+
+  &.blue {
+    background-color: $tagteam-default-blue;
+    &:hover {
+      background-color: lighten($tagteam-default-blue, 20%);
+    }
+    &:active {
+      background-color: $tagteam-default-blue;
+    }
+  }
+
+  &.red {
+    background-color: $tagteam-default-red;
+    &:hover {
+      background-color: lighten($tagteam-default-red, 20%);
+    }
+    &:active {
+      background-color: $tagteam-default-red;
+    }
+  }
+
+  &.yellow {
+    background-color: $tagteam-default-yellow;
+    &:hover {
+      background-color: lighten($tagteam-default-yellow, 20%);
+    }
+    &:active {
+      background-color: $tagteam-default-yellow;
+    }
+  }
+
+  &.green {
+    background-color: $tagteam-default-green;
+    &:hover {
+      background-color: lighten($tagteam-default-green, 20%);
+    }
+    &:active {
+      background-color: $tagteam-default-green;
+    }
+  }
+
+  &:hover {
+    bottom: 0.3rem;
+  }
+}
+
+.linkbutton {
+  font-family: $tagteam-default-sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+  bottom: 0;
+  transition: 50ms;
+  cursor: pointer;
+  color: $tagteam-default-black;
+  padding: 0.5rem 0;
+
+  &:hover {
+    bottom: 0.3rem;
+    color: $tagteam-default-blue;
+  }
+
+  &:active {
+    color: lighten($tagteam-default-blue, 20%);
+  }
+}
