@@ -83,12 +83,17 @@ $tagteam-default-sans-serif: 'Lato', sans-serif;
   }
 }
 
-button {
+a:hover, a:active, a:focus, a:link {
+  text-decoration: none;
+}
+
+a.button {
   min-width: 12.5rem;
   font-family: $tagteam-default-sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: 0.1rem;
+  text-align: center;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -153,7 +158,7 @@ button {
   }
 }
 
-.linkbutton {
+a.linkbutton {
   font-family: $tagteam-default-sans-serif;
   font-weight: 600;
   font-size: 1rem;

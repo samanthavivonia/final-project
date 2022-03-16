@@ -58,12 +58,13 @@
   bottom: 10%;
 }
 
-button {
+a.button {
   min-width: 12.5rem;
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
   letter-spacing: 0.1rem;
+  text-align: center;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -73,56 +74,56 @@ button {
   transition: 50ms;
   cursor: pointer;
 }
-button.black {
+a.button.black {
   background-color: #0F0F0F;
 }
-button.black:hover {
+a.button.black:hover {
   background-color: #424242;
 }
-button.black:active {
+a.button.black:active {
   background-color: #0F0F0F;
 }
-button.blue {
+a.button.blue {
   background-color: #544E8D;
 }
-button.blue:hover {
+a.button.blue:hover {
   background-color: #8a85bc;
 }
-button.blue:active {
+a.button.blue:active {
   background-color: #544E8D;
 }
-button.red {
+a.button.red {
   background-color: #C53943;
 }
-button.red:hover {
+a.button.red:hover {
   background-color: #dc888e;
 }
-button.red:active {
+a.button.red:active {
   background-color: #C53943;
 }
-button.yellow {
+a.button.yellow {
   background-color: #F4BE5A;
 }
-button.yellow:hover {
+a.button.yellow:hover {
   background-color: #fae4ba;
 }
-button.yellow:active {
+a.button.yellow:active {
   background-color: #F4BE5A;
 }
-button.green {
+a.button.green {
   background-color: #4A978B;
 }
-button.green:hover {
+a.button.green:hover {
   background-color: #84c3b9;
 }
-button.green:active {
+a.button.green:active {
   background-color: #4A978B;
 }
-button:hover {
+a.button:hover {
   bottom: 0.3rem;
 }
 
-.linkbutton {
+a.linkbutton {
   font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -133,11 +134,11 @@ button:hover {
   color: #0F0F0F;
   padding: 0.5rem 0;
 }
-.linkbutton:hover {
+a.linkbutton:hover {
   bottom: 0.3rem;
   color: #544E8D;
 }
-.linkbutton:active {
+a.linkbutton:active {
   color: #8a85bc;
 }
 

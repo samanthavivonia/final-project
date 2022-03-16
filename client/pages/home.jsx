@@ -8,8 +8,8 @@ export default function Home(props) {
     <div className='container'>
       <Logo size='big'/>
       <div className='buttons'>
-        <Button color='black' text='New Game' />
-        <LinkButton text='How Do I Play?' />
+        <Button color='black' text='New Game' destination='#new-game-configure-settings'/>
+        <LinkButton text='How Do I Play?' destination='#how-do-i-play'/>
       </div>
     </div>
   );

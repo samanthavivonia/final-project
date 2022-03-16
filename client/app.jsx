@@ -1,7 +1,9 @@
 import React from 'react';
 import Home from './pages/home';
+import HowDoIPlay from './pages/how-do-i-play';
 import NewGameConfigureSettings from './pages/new-game-configure-settings';
 import { parseRoute } from './lib';
+import './styles/styles.scss';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -23,7 +25,9 @@ export default class App extends React.Component {
     const { route } = this.state;
     if (route.path === '') {
       return <Home />;
-    } if (route.path === 'new-game-settings') {
+    } if (route.path === 'how-do-i-play') {
+      return <HowDoIPlay />;
+    } if (route.path === 'new-game-configure-settings') {
       return <NewGameConfigureSettings />;
     } else {
       return <div>THIS IS A 404 PAGE</div>;
