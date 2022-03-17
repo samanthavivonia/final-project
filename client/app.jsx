@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './pages/home';
 import HowDoIPlay from './pages/how-do-i-play';
-import NewGameConfigureSettings from './pages/new-game-configure-settings';
+import NewGameSettings from './pages/new-game-configure-settings';
 import { parseRoute } from './lib';
 import './styles/styles.scss';
 
@@ -27,8 +27,8 @@ export default class App extends React.Component {
       return <Home />;
     } if (route.path === 'how-do-i-play') {
       return <HowDoIPlay />;
-    } if (route.path === 'new-game-configure-settings') {
-      return <NewGameConfigureSettings />;
+    } if (route.path === 'new-game-settings') {
+      return <NewGameSettings />;
     } else {
       return <div>THIS IS A 404 PAGE</div>;
     }

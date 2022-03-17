@@ -41,6 +41,15 @@ CREATE TABLE "ratings" (
   OIDS=FALSE
 );
 
+-- CREATE TABLE "pointsToWin" (
+-- 	"pointsToWinId" serial NOT NULL,
+-- 	"pointsToWinName" TEXT NOT NULL,
+--   "pointsToWinNumber" integer NOT NULL,
+-- 	CONSTRAINT "pointsToWin_pk" PRIMARY KEY ("pointsToWinId")
+-- ) WITH (
+--   OIDS=FALSE
+-- );
+
 CREATE TABLE "questions" (
 	"questionId" serial NOT NULL,
 	"questionCategoryId" integer NOT NULL,

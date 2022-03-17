@@ -12,6 +12,13 @@ insert into "ratings"
     ('A Little Risky'),
     ('Adults Only');
 
+-- insert into "pointsToWin"
+--   ("pointsToWinName", "pointsToWinNumber")
+--   values
+--     ('Short (First to 10', '10'),
+--     ('Medium (First to 20)', '20'),
+--     ('Long (First to 20)', '50');
+
 insert into "questionCategories"
   ("questionCategoryName")
   values

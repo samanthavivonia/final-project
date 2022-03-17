@@ -18,8 +18,14 @@ $tagteam-default-danger: #C53943;
 $tagteam-default-serif: 'Domine', serif;
 $tagteam-default-sans-serif: 'Lato', sans-serif;
 
+body {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
 .container {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   padding: 40px;
   display: flex;
@@ -27,6 +33,21 @@ $tagteam-default-sans-serif: 'Lato', sans-serif;
   gap: 3rem;
   justify-content: center;
   align-items: center;
+  max-width: 600px;
+}
+
+h1 {
+  font-family: $tagteam-default-serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin: 0;
+  text-align: center;
+}
+
+p {
+  font-family: $tagteam-default-sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .buttons {
@@ -136,7 +157,7 @@ a.button {
   &.yellow {
     background-color: $tagteam-default-yellow;
     &:hover {
-      background-color: lighten($tagteam-default-yellow, 20%);
+      background-color: lighten($tagteam-default-yellow, 10%);
     }
     &:active {
       background-color: $tagteam-default-yellow;
@@ -176,5 +197,114 @@ a.linkbutton {
 
   &:active {
     color: lighten($tagteam-default-blue, 20%);
+  }
+}
+
+.input-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+label {
+  font-family: $tagteam-default-sans-serif;
+}
+
+.tab {
+  // min-width: 6.25rem;
+  width: 100%;
+  font-family: $tagteam-default-sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid $tagteam-default-black;
+  padding: 0.5rem 1rem;
+  transition: 50ms;
+  cursor: pointer;
+  background-color: $tagteam-default-white;
+
+  &.false {
+    &.blue {
+      color: $tagteam-default-blue;
+      border: 1px solid $tagteam-default-blue;
+      &:hover {
+        background-color: lighten($tagteam-default-blue, 50%);
+      }
+    }
+    &.red {
+      color: $tagteam-default-red;
+      border: 1px solid $tagteam-default-red;
+      &:hover {
+        background-color: lighten($tagteam-default-red, 45%);
+      }
+    }
+    &.yellow {
+      color: $tagteam-default-yellow;
+      border: 1px solid $tagteam-default-yellow;
+      &:hover {
+        background-color: lighten($tagteam-default-yellow, 50%);
+      }
+    }
+    &.green {
+      color: $tagteam-default-green;
+      border: 1px solid $tagteam-default-green;
+      &:hover {
+        background-color: lighten($tagteam-default-green, 50%);
+      }
+    }
+  }
+  &.true {
+    &.blue {
+      background-color: $tagteam-default-blue;
+      color: $tagteam-default-white;
+      border: 1px solid $tagteam-default-blue;
+      &:hover {
+        background-color: darken($tagteam-default-blue, 10%);
+      }
+    }
+    &.red {
+      background-color: $tagteam-default-red;
+      color: $tagteam-default-white;
+      border: 1px solid $tagteam-default-red;
+      &:hover {
+        background-color: darken($tagteam-default-red, 10%);
+      }
+    }
+    &.yellow {
+      background-color: $tagteam-default-yellow;
+      color: $tagteam-default-white;
+      border: 1px solid $tagteam-default-yellow;
+      &:hover {
+        background-color: darken($tagteam-default-yellow, 10%);
+      }
+    }
+    &.green {
+      background-color: $tagteam-default-green;
+      color: $tagteam-default-white;
+      border: 1px solid $tagteam-default-green;
+      &:hover {
+        background-color: darken($tagteam-default-green, 10%);
+      }
+    }
+  }
+
+}
+
+.tabs {
+  display: flex;
+  border-radius: 5px;
+  width: 100%;
+  &.blue {
+    border: 1px solid $tagteam-default-blue;
+  }
+  &.red {
+    border: 1px solid $tagteam-default-red;
+  }
+  &.yellow {
+    border: 1px solid $tagteam-default-yellow;
+  }
+  &.green {
+    border: 1px solid $tagteam-default-green;
   }
 }
