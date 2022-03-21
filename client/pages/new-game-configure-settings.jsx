@@ -15,10 +15,10 @@ class NewGameSettings extends React.Component {
       ratings: [],
       ratingSelected: null
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDifficultyClick = this.handleDifficultyClick.bind(this);
     this.handlePointsToWinClick = this.handlePointsToWinClick.bind(this);
     this.handleRatingClick = this.handleRatingClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -34,18 +34,22 @@ class NewGameSettings extends React.Component {
   }
 
   handleDifficultyClick(id) {
+    // console.log('handleDifficultyCLick');
     this.setState({ difficultySelected: id });
   }
 
   handlePointsToWinClick(id) {
+    // console.log('handlePointsToWinCLick');
     this.setState({ pointsToWinSelected: id });
   }
 
   handleRatingClick(id) {
+    // console.log('handleRatingCLick');
     this.setState({ ratingSelected: id });
   }
 
   handleSubmit() {
+    // console.log('Handle Submit Called');
     const newGameData = {
       gameDifficulty: this.state.difficultySelected,
       gamePointsToWin: this.state.pointsToWinSelected,
@@ -58,7 +62,7 @@ class NewGameSettings extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        location.hash = '#new-game-settings';
+        location.hash = 'new-game-create-teams';
       });
   }
 
@@ -94,7 +98,7 @@ class NewGameSettings extends React.Component {
         />
 
         <div className='buttons'>
-          <Button color='yellow' text='Create Teams' onClick={this.handleSubmit} />
+          <Button color='yellow' text='Create Teams' onClick={this.handleSubmit}/>
           <LinkButton text='Go Back' destination='' />
         </div>
       </div>

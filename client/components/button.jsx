@@ -8,11 +8,16 @@ class Button extends React.Component {
 
   render(props) {
     return (
-      <a className={`button ${this.props.color}`} href={this.props.destination}>
+      <button
+        className={`button ${this.props.color}`}
+        onClick={
+         () => { this.props.onClick(); }
+        }
+      >
         <i className={this.props.iconleft}/>
         {this.props.text}
         <i className={this.props.iconright}/>
-      </a>
+      </button>
     );
   }
 }

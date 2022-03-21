@@ -78,7 +78,7 @@ app.post('/api/games', (req, res, next) => {
     insert into "games"
       ("gameDifficulty", "gamePointsToWin", "gameRating")
       values
-        ('$1', '$2', '$3')
+        ($1, $2, $3)
     returning *
   `;
   const params = [gameDifficulty, gamePointsToWin, gameRating];
