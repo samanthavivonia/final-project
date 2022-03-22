@@ -8,7 +8,12 @@ class Button extends React.Component {
 
   render(props) {
     return (
-      <button className={this.props.color}>
+      <button
+        className={`button ${this.props.color}`}
+        onClick={
+         () => { this.props.onClick(); }
+        }
+      >
         <i className={this.props.iconleft}/>
         {this.props.text}
         <i className={this.props.iconright}/>

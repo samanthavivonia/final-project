@@ -4,3 +4,5 @@ node_modules
 .vscode
 *.log
 .env
+server/public/styles.css
+server/public/styles.css.map
