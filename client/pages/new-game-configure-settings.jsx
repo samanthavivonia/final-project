@@ -13,12 +13,15 @@ class NewGameSettings extends React.Component {
       pointsToWin: [],
       pointsToWinSelected: null,
       ratings: [],
-      ratingSelected: null
+      ratingSelected: null,
+      isDisabled: true
     };
     this.handleDifficultyClick = this.handleDifficultyClick.bind(this);
     this.handlePointsToWinClick = this.handlePointsToWinClick.bind(this);
     this.handleRatingClick = this.handleRatingClick.bind(this);
+    this.handleDisabled = this.handleDisabled.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBackClick = this.handleBackClick.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +51,18 @@ class NewGameSettings extends React.Component {
     this.setState({ ratingSelected: id });
   }
 
+  handleDisabled() {
+    if (this.state.difficultySelected && this.state.pointsToWinSelected && this.state.ratingSelected) {
+      this.setState({ isDisabled: false });
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.isDisabled) {
+      this.handleDisabled();
+    }
+  }
+
   handleSubmit() {
     // console.log('Handle Submit Called');
     const newGameData = {
@@ -66,40 +81,52 @@ class NewGameSettings extends React.Component {
       });
   }
 
+  handleBackClick() {
+    // console.log('clicked');
+    location.hash = '';
+  }
+
   render() {
     // console.log('PAGE STATE: ', this.state);
     const difficulties = this.state.difficulties;
     const ratings = this.state.ratings;
     const pointsToWin = this.state.pointsToWin;
     return (
-      <div className='container'>
-        <Logo size='smol' />
-        <h1>Choose Game Settings</h1>
+      <div className='page'>
+        <div className='container'>
+          <Logo size='smol' />
+          <h1>Choose Game Settings</h1>
 
-        <Tabs
-          data={difficulties}
-          label='How difficult do you want your game to be?'
-          color='blue'
-          onClick={this.handleDifficultyClick}
-        />
+          <Tabs
+            data={difficulties}
+            label='How difficult do you want your game to be?'
+            color='blue'
+            onClick={this.handleDifficultyClick}
+          />
 
-        <Tabs
-          data={pointsToWin}
-          label='How long do you want your game to be?'
-          color='green'
-          onClick={this.handlePointsToWinClick}
-        />
+          <Tabs
+            data={pointsToWin}
+            label='How long do you want your game to be?'
+            color='green'
+            onClick={this.handlePointsToWinClick}
+          />
 
-        <Tabs
-          data={ratings}
-          label='What kind of questions do you want to answer?'
-          color='red'
-          onClick={this.handleRatingClick}
-        />
+          <Tabs
+            data={ratings}
+            label='What kind of questions do you want to answer?'
+            color='red'
+            onClick={this.handleRatingClick}
+          />
 
-        <div className='buttons'>
-          <Button color='yellow' text='Create Teams' onClick={this.handleSubmit}/>
-          <LinkButton text='Go Back' destination='' />
+          <div className='buttons'>
+            <Button
+              color='yellow'
+              text='Create Teams'
+              iconright='fas fa-arrow-right'
+              disabled={this.state.isDisabled}
+              onClick={this.handleSubmit}/>
+            <LinkButton text='Go Back' onClick={this.handleBackClick} />
+          </div>
         </div>
       </div>
     );

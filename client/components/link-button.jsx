@@ -8,8 +8,13 @@ class LinkButton extends React.Component {
 
   render(props) {
     return (
-      <a className="linkbutton" href={this.props.destination}>
-        <i className={this.props.icon}/>
+      <a
+        className="linkbutton"
+        onClick={
+          () => { this.props.onClick(); }
+        }
+      >
+      <i className={this.props.icon}/>
         {this.props.text}
       </a>
     );

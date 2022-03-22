@@ -13,6 +13,7 @@ class Button extends React.Component {
         onClick={
          () => { this.props.onClick(); }
         }
+        disabled={this.props.disabled}
       >
         <i className={this.props.iconleft}/>
         {this.props.text}
