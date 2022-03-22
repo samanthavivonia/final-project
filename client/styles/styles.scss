@@ -18,7 +18,10 @@ $tagteam-default-danger: #C53943;
 $tagteam-default-serif: 'Domine', serif;
 $tagteam-default-sans-serif: 'Lato', sans-serif;
 
-body {
+$card-shadow: 2px 2px 2px rgba(3, 3, 3, 0.2);
+$stick-shadow: 1px 1px 1px rgba(3, 3, 3, 0.1);
+
+.page {
  display: flex;
  justify-content: center;
  align-items: center;
@@ -55,7 +58,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .logo {
@@ -123,6 +126,10 @@ button {
   bottom: 0;
   transition: 50ms;
   cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
 
   &.black {
     background-color: $tagteam-default-black;
@@ -177,12 +184,18 @@ button {
   &:hover {
     bottom: 0.3rem;
   }
+
+  &:disabled {
+    background-color: $tagteam-default-gray300;
+  }
+
 }
 
 a.linkbutton {
   font-family: $tagteam-default-sans-serif;
   font-weight: 600;
   font-size: 1rem;
+  text-align: center;
   position: relative;
   bottom: 0;
   transition: 50ms;
@@ -306,5 +319,121 @@ label {
   }
   &.green {
     border: 1px solid $tagteam-default-green;
+  }
+}
+
+.create-team {
+  height: 13.8rem;
+  width: 12rem;
+  font-weight: 600;
+  border: 1.5px dashed $tagteam-default-gray300;
+  border-radius: 10px;
+  color: $tagteam-default-gray400;
+  background-color: $tagteam-default-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  bottom: 0;
+  transition: 50ms;
+  cursor: pointer;
+
+  &:hover {
+    color: $tagteam-default-black;
+    background-color: $tagteam-default-gray100;
+    bottom: 10px;
+  }
+
+  &:active {
+    background-color: $tagteam-default-gray200;
+  }
+}
+
+.modal {
+  position: fixed;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.25rem;
+  border: 1.5px solid $tagteam-default-gray300;
+  border-radius: 5px;
+  box-shadow: $card-shadow;
+  background-color: $tagteam-default-white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &.team {
+    font-family: $tagteam-default-serif;
+    font-size: 1.4rem;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: $tagteam-default-gray100;
+      border: none;
+    }
+
+    &:active, &:focus {
+      background-color: $tagteam-default-gray100;
+      border: none;
+      outline: none;
+    }
+
+  }
+
+  &.character {
+    font-family: $tagteam-default-sans-serif;
+    font-size: 1.1rem;
+    border: 1.5px solid $tagteam-default-gray300;
+    border-radius: 5px;
+    box-shadow: $stick-shadow;
+    padding: 0.3rem;
+
+    &:hover {
+      background-color: $tagteam-default-gray100;
+    }
+
+    &:active, &:focus {
+      background-color: $tagteam-default-gray100;
+      outline: none;
+    }
+  }
+}
+
+.characterInputAndX {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    flex-grow: 1;
+  }
+
+  span {
+    flex-grow: 2;
   }
 }

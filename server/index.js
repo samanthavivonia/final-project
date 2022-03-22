@@ -9,6 +9,9 @@ const app = express();
 
 app.use(staticMiddleware);
 
+const jsonMiddleware = express.json();
+app.use(jsonMiddleware);
+
 app.get('/api/gamesettings', (req, res, next) => {
   const respData = {};
   const sqlDifficulties = `
