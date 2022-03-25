@@ -420,6 +420,10 @@ input {
       outline: none;
     }
   }
+
+  &::placeholder {
+    color: $tagteam-default-gray300;
+  }
 }
 
 .characterInputAndX {

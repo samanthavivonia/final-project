@@ -32,7 +32,7 @@ class NewGameCreateTeams extends React.Component {
             <CreateTeamCard onClick={this.handleOpenModal} />
           </div>
           <div className='buttons'>
-            <Button color='green' text='Start Game' iconright='fas fa-arrow-right'/>
+            <Button color='blue' text='Start Game' iconright='fas fa-arrow-right'/>
             <LinkButton text='Go Back' onClick={this.handleBackClick} />
           </div>
         </div>

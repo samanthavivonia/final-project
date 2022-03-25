@@ -13,8 +13,8 @@ class CreateTeamCard extends React.Component {
           () => { this.props.onClick(); }
         }
       >
-        <p>Create Team </p>
         <i className='fas fa-plus'></i>
+        <p>Create Team </p>
       </div>
     );
   }
