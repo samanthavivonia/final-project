@@ -107,22 +107,22 @@ app.post('/api/newteam', (req, res, next) => {
   const paramsNewTeam = [gameId, teamName];
   const sqlNewTeam = `
     insert into "teams"
-      ("gameId", teamName", "teamPoints")
+      ("gameId", "teamName", "teamPoints")
       values
-        ($1, $2, 0);
-    returning *;
+        ($1, $2, 0)
+    returning *
   `;
   db.query(sqlNewTeam, paramsNewTeam)
     .then(result => {
       respData.gameId = result.rows.gameId;
-      respData.teamId = result.rows.teamName;
+      respData.teamName = result.rows.teamName;
 
-      const characters = req.body.characters;
       const newTeam = result.rows[0];
+      const characters = req.body.characters;
       const charactersParams = [newTeam.teamId];
       const charactersInserts = Object.keys(characters).map((key, i) => {
-        charactersParams.push(characters[key].value);
-        return `($${i + 2}), $1`;
+        charactersParams.push(characters[key].characterName);
+        return `($${i + 2}, $1)`;
       });
       const sqlCharacters = `
         insert into "characters"
@@ -130,6 +130,8 @@ app.post('/api/newteam', (req, res, next) => {
             values ${charactersInserts.join(', ')}
           returning *
       `;
+      // console.log(sqlCharacters);
+      // console.log(charactersParams);
       db.query(sqlCharacters, charactersParams)
         .then(result => {
           respData.characters[result.rows.characterId] = result.rows;
