@@ -143,6 +143,34 @@ app.post('/api/newteam', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/teams', (req, res, next) => {
+  const sql = `
+    select "teamId", "teamName", "characterId", "characterName"
+      from "teams"
+      join "characters" using  ("teamId")
+      where "gameId" = '1';
+  `;
+  db.query(sql)
+    .then(result => {
+      const data = result.rows;
+
+      const teams = {};
+      for (let i = 0; i < data.length; i++) {
+        teams[data[i].teamId] = {
+          teamName: data[i].teamName,
+          characters: {}
+        };
+        for (let j = 0; j < data.length; j++) {
+          if (data[i].teamId === data[j].teamId) {
+            teams[data[i].teamId].characters[data[j].characterId] = data[j].characterName;
+          }
+        }
+      }
+      res.json(teams);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

@@ -78,9 +78,19 @@ class CreateEditTeamModal extends React.Component {
     const characterInputs = Object.keys(this.state.characters).map(key => {
       const character = this.state.characters[key];
       return (
-        <div key={key} className='characterInputAndX'>
-          <input className='character' type="text" placeholder='Character Name...' onChange={e => this.handleCharacterName(e, character.characterId)}/>
-          <LinkButton icon='fas fa-times' onClick={() => this.deleteCharacterInput(character.characterId)} />
+        <div
+          key={key}
+          className='characterInputAndX'
+        >
+          <input
+            className='character'
+            type="text" placeholder='Character Name...'
+            onChange={e => this.handleCharacterName(e, character.characterId)}
+          />
+          <LinkButton
+            icon='fas fa-times'
+            onClick={() => this.deleteCharacterInput(character.characterId)}
+          />
         </div>
       );
     });
@@ -88,14 +98,30 @@ class CreateEditTeamModal extends React.Component {
     return (
       <>
         <div className='modal'>
-          <input className='team' type="text" placeholder='Team Name...' onChange={this.handleTeamName}/>
+          <input
+            className='team'
+            type="text"
+            placeholder='Team Name...'
+            onChange={this.handleTeamName}
+          />
           <div className='characterInputs'>
             {characterInputs}
           </div>
-          <LinkButton text='Add Character' icon='fas fa-plus' onClick={this.addCharacterInput} />
+          <LinkButton
+            text='Add Character'
+            icon='fas fa-plus'
+            onClick={this.addCharacterInput}
+          />
           <div className='buttons'>
-            <Button color='green' text='Save Team' onClick={this.handleSubmit}/>
-            <LinkButton text='Cancel' onClick={this.handleClose} />
+            <Button
+              color='green'
+              text='Save Team'
+              onClick={this.handleSubmit}
+            />
+            <LinkButton
+              text='Cancel'
+              onClick={this.handleClose}
+            />
           </div>
         </div>
       </>
