@@ -32,7 +32,11 @@ export default class App extends React.Component {
     } if (route.path === 'new-game-settings') {
       return <NewGameSettings />;
     } if (route.path === 'new-game-create-teams') {
-      return <NewGameCreateTeams />;
+      return (
+        <NewGameCreateTeams
+          gameId={route.params.get('gameId')}
+        />
+      );
     } if (route.path === 'new-game-create-teams-modal') {
       return <NewGameCreateTeamsModal />;
     } else {

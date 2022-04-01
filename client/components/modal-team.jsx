@@ -2,21 +2,39 @@ import React from 'react';
 import LinkButton from './link-button';
 import Button from './button';
 
-class CreateEditTeamModal extends React.Component {
+class ModalTeam extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       nextInputId: 1,
       teamName: '',
-      characters: {},
-      editing: null
+      characters: {}
     };
+    this.handleTeamName = this.handleTeamName.bind(this);
     this.handleTeamName = this.handleTeamName.bind(this);
     this.handleCharacterName = this.handleCharacterName.bind(this);
     this.addCharacterInput = this.addCharacterInput.bind(this);
     this.deleteCharacterInput = this.deleteCharacterInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClose = this.handleClose.bind(this);
+  }
+
+  componentDidMount() {
+
+    if (this.props.editing) {
+      // console.log('loadEditData called!');
+      // console.log(Object.keys(this.props.characters));
+      const ids = Object.keys(this.props.characters).map(id => parseInt(id));
+      // console.log('ids: ', ids);
+      const nextId = Math.max(...ids) + 1;
+      // console.log('nextId: ', nextId);
+
+      this.setState({
+        teamName: this.props.teamName,
+        characters: this.props.characters,
+        nextInputId: nextId
+      });
+    }
+
   }
 
   handleTeamName(event) {
@@ -27,18 +45,16 @@ class CreateEditTeamModal extends React.Component {
   handleCharacterName(event, id) {
     // console.log('handleCharacterName: ', event.target.value);
     const characters = { ...this.state.characters };
-    characters[id].characterName = event.target.value;
+    characters[id] = event.target.value;
     this.setState({ characters });
   }
 
   addCharacterInput(id) {
     // console.log('addCharacterInput called');
     const characters = { ...this.state.characters };
-    const newCharacter = {
-      characterId: this.state.nextInputId,
-      characterName: ''
-    };
-    characters[this.state.nextInputId] = newCharacter;
+    // console.log('characters: ', characters);
+    characters[this.state.nextInputId] = '';
+    // console.log('characters: ', characters);
     this.setState({ characters: characters, nextInputId: (this.state.nextInputId + 1) });
   }
 
@@ -51,26 +67,37 @@ class CreateEditTeamModal extends React.Component {
 
   handleSubmit() {
     // console.log('Handle Submit Called');
-    const newTeamData = {
-      gameId: 1,
-      teamName: this.state.teamName,
-      characters: this.state.characters
-    };
-    // console.log('handleSubmit data: ', newTeamData);
-    fetch('/api/newteam', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newTeamData)
-    })
-      .then(res => res.json())
-      .then(data => {
-        location.hash = 'new-game-create-teams';
-      });
-  }
-
-  handleClose() {
-    // console.log('handleClose');
-    location.hash = this.props.close;
+    if (!this.props.editing) {
+      // console.log('This is a create!');
+      const newTeamData = {
+        gameId: 1,
+        teamName: this.state.teamName,
+        characters: this.state.characters
+      };
+      // console.log('handleSubmit data: ', newTeamData);
+      fetch('/api/newteam', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newTeamData)
+      })
+        .then(res => res.json());
+    }
+    if (this.props.editing) {
+      // console.log('This is an edit!');
+      const newTeamData = {
+        gameId: 1,
+        teamId: this.props.teamId,
+        teamName: this.state.teamName,
+        characters: this.state.characters
+      };
+      // console.log('handleSubmit data: ', newTeamData);
+      fetch('api/editteam', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newTeamData)
+      })
+        .then(res => res.json());
+    }
   }
 
   render(props) {
@@ -85,11 +112,12 @@ class CreateEditTeamModal extends React.Component {
           <input
             className='character'
             type="text" placeholder='Character Name...'
-            onChange={e => this.handleCharacterName(e, character.characterId)}
+            value={character}
+            onChange={e => this.handleCharacterName(e, key)}
           />
           <LinkButton
             icon='fas fa-times'
-            onClick={() => this.deleteCharacterInput(character.characterId)}
+            onClick={() => this.deleteCharacterInput(key)}
           />
         </div>
       );
@@ -102,6 +130,7 @@ class CreateEditTeamModal extends React.Component {
             className='team'
             type="text"
             placeholder='Team Name...'
+            value={this.state.teamName}
             onChange={this.handleTeamName}
           />
           <div className='characterInputs'>
@@ -116,11 +145,22 @@ class CreateEditTeamModal extends React.Component {
             <Button
               color='green'
               text='Save Team'
-              onClick={this.handleSubmit}
+              onClick={
+                () => {
+                  this.handleSubmit();
+                  this.props.onClose();
+                }
+              }
             />
+            {/* <LinkButton
+              icon='fas fa-trash'
+              text='Delete Team'
+            /> */}
             <LinkButton
               text='Cancel'
-              onClick={this.handleClose}
+              onClick={
+                () => { this.props.onClose(); }
+              }
             />
           </div>
         </div>
@@ -129,4 +169,4 @@ class CreateEditTeamModal extends React.Component {
   }
 }
 
-export default CreateEditTeamModal;
+export default ModalTeam;

@@ -77,7 +77,7 @@ class NewGameSettings extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        location.hash = 'new-game-create-teams';
+        location.hash = 'new-game-create-teams?gameId=' + data.gameId;
       });
   }
 
