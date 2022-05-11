@@ -98,6 +98,7 @@ class ModalTeam extends React.Component {
       })
         .then(res => res.json());
     }
+    window.location.reload();
   }
 
   render(props) {
@@ -152,10 +153,10 @@ class ModalTeam extends React.Component {
                 }
               }
             />
-            {/* <LinkButton
+            <LinkButton
               icon='fas fa-trash'
               text='Delete Team'
-            /> */}
+            />
             <LinkButton
               text='Cancel'
               onClick={
