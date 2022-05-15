@@ -121,7 +121,7 @@ app.post('/api/newteam', (req, res, next) => {
       const characters = req.body.characters;
       const charactersParams = [newTeam.teamId];
       const charactersInserts = Object.keys(characters).map((key, i) => {
-        charactersParams.push(characters[key].characterName);
+        charactersParams.push(characters[key]);
         return `($${i + 2}, $1)`;
       });
       const sqlCharacters = `
@@ -143,20 +143,83 @@ app.post('/api/newteam', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/teams', (req, res, next) => {
+app.put('/api/editteam', (req, res, next) => {
+  const respData = {
+    gameId: null,
+    teamId: null,
+    teamName: null,
+    characters: {}
+  };
+  // const gameId = Number(req.body.gameId);
+  const teamId = Number(req.body.teamId);
+  const teamName = req.body.teamName;
+  const paramsTeam = [teamId, teamName];
+  const sqlTeam = `
+    update "teams"
+      set "teamName" = $2
+      where "teamId" = $1
+    returning *
+  `;
+  // console.log('QUERY ONE');
+  db.query(sqlTeam, paramsTeam)
+    .then(result => {
+      respData.gameId = result.rows.gameId;
+      respData.teamId = result.rows.teamId;
+      respData.teamName = result.rows.teamName;
+
+      const paramsDelete = [teamId];
+      const sqlDelete = `
+        delete from "characters"
+          where "teamId" = $1
+          returning *;
+      `;
+      // console.log('QUERY TWO');
+      db.query(sqlDelete, paramsDelete)
+        .then(result => {
+          const characters = req.body.characters;
+          const charactersParams = [teamId];
+          const charactersInserts = Object.keys(characters).map((key, i) => {
+            charactersParams.push(characters[key]);
+            return `($${i + 2}, $1)`;
+          });
+          const sqlCharacters = `
+          insert into "characters"
+            ("characterName", "teamId")
+            values ${charactersInserts.join(', ')}
+          returning *
+          `;
+          // console.log(sqlCharacters);
+          // console.log(charactersParams);
+          // console.log('QUERY THREE');
+          db.query(sqlCharacters, charactersParams)
+            .then(result => {
+              respData.characters[result.rows.characterId] = result.rows;
+              // console.log('respData: ', respData);
+              res.json(respData);
+            })
+            .catch(err => next(err));
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/teams/:gameId', (req, res, next) => {
+  const params = [req.params.gameId];
   const sql = `
     select "teamId", "teamName", "characterId", "characterName"
       from "teams"
       join "characters" using  ("teamId")
-      where "gameId" = '1';
+      where "gameId" = $1;
   `;
-  db.query(sql)
+  db.query(sql, params)
     .then(result => {
       const data = result.rows;
 
       const teams = {};
       for (let i = 0; i < data.length; i++) {
         teams[data[i].teamId] = {
+          teamId: data[i].teamId,
           teamName: data[i].teamName,
           characters: {}
         };

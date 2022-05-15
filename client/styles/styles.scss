@@ -323,9 +323,9 @@ label {
 }
 
 .create-team {
-  height: 13.8rem;
   width: 12rem;
   min-width: 12rem;
+  min-height: 6rem;
   font-weight: 600;
   border: 1.5px dashed $tagteam-default-gray300;
   border-radius: 10px;
@@ -356,8 +356,8 @@ label {
   gap: 2rem;
   width: 100vw;
   justify-content: center;
+  align-items: stretch;
   overflow-x: scroll;
-  // overflow-y: visible;
   padding: 1rem;
 }
 
