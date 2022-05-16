@@ -16,6 +16,7 @@ class ModalTeam extends React.Component {
     this.addCharacterInput = this.addCharacterInput.bind(this);
     this.deleteCharacterInput = this.deleteCharacterInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteTeam = this.deleteTeam.bind(this);
   }
 
   componentDidMount() {
@@ -101,6 +102,22 @@ class ModalTeam extends React.Component {
     window.location.reload();
   }
 
+  deleteTeam() {
+    // console.log('deleteTeam called!');
+    if (this.props.editing) {
+      const deleteThis = {
+        teamId: this.props.teamId
+      };
+      fetch('/api/deleteteam', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deleteThis)
+      })
+        .then(res => res.json());
+    }
+    window.location.reload();
+  }
+
   render(props) {
     // console.log('MODAL STATE: ', this.state);
     const characterInputs = Object.keys(this.state.characters).map(key => {
@@ -156,6 +173,12 @@ class ModalTeam extends React.Component {
             <LinkButton
               icon='fas fa-trash'
               text='Delete Team'
+              onClick={
+                () => {
+                  this.deleteTeam();
+                  this.props.onClose();
+                }
+              }
             />
             <LinkButton
               text='Cancel'

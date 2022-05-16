@@ -37,8 +37,6 @@ export default class App extends React.Component {
           gameId={route.params.get('gameId')}
         />
       );
-    // } if (route.path === 'new-game-create-teams-modal') {
-      // return <NewGameCreateTeamsModal />;
     } else {
       return <div>THIS IS A 404 PAGE</div>;
     }
