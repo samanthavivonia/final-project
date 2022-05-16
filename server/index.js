@@ -204,6 +204,38 @@ app.put('/api/editteam', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/deleteteam', (req, res, next) => {
+  // console.log('delete route!');
+  const teamId = Number(req.body.teamId);
+  const params = [teamId];
+  // const sql = `
+  //   delete "teams".*, "characters".*
+  //   from "teams"
+  //   inner join "characters" on ("teamId")
+  //   where "teamId" = $1
+  //   returning *;
+  // `;
+  const sqlCharacters = `
+    delete from "characters"
+    where "teamId" = $1
+    returning *;
+  `;
+  db.query(sqlCharacters, params)
+    .then(result => {
+      const sqlTeam = `
+        delete from "teams"
+        where "teamId" = $1
+        returning *;
+      `;
+      db.query(sqlTeam, params)
+        .then(result => {
+          res.json(result);
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/teams/:gameId', (req, res, next) => {
   const params = [req.params.gameId];
   const sql = `
