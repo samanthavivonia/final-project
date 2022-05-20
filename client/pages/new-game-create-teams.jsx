@@ -15,6 +15,7 @@ class NewGameCreateTeams extends React.Component {
     this.reloadTeams = this.reloadTeams.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
     this.handleDisabled = this.handleDisabled.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,10 @@ class NewGameCreateTeams extends React.Component {
     if (this.state.isDisabled) {
       this.handleDisabled();
     }
+  }
+
+  handleSubmit() {
+    location.hash = 'new-game-roll-characters?gameId=' + this.props.gameId;
   }
 
   handleBackClick() {
@@ -85,6 +90,7 @@ class NewGameCreateTeams extends React.Component {
                 text='Start Game'
                 iconright='fas fa-arrow-right'
                 disabled={this.state.isDisabled}
+                onClick={this.handleSubmit}
               />
               <LinkButton text='Go Back' onClick={this.handleBackClick} />
             </div>

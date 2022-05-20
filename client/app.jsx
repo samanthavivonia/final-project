@@ -3,7 +3,8 @@ import Home from './pages/home';
 import HowDoIPlay from './pages/how-do-i-play';
 import NewGameSettings from './pages/new-game-configure-settings';
 import NewGameCreateTeams from './pages/new-game-create-teams';
-// import NewGameCreateTeamsModal from './pages/new-game-create-teams-modal';
+import NewGameRollCharacters from './pages/new-game-roll-characters';
+import Game from './pages/game';
 import { parseRoute } from './lib';
 import './styles/styles.scss';
 
@@ -34,6 +35,18 @@ export default class App extends React.Component {
     } if (route.path === 'new-game-create-teams') {
       return (
         <NewGameCreateTeams
+          gameId={route.params.get('gameId')}
+        />
+      );
+    } if (route.path === 'new-game-roll-characters') {
+      return (
+        <NewGameRollCharacters
+          gameId={route.params.get('gameId')}
+        />
+      );
+    } if (route.path === 'game') {
+      return (
+        <Game
           gameId={route.params.get('gameId')}
         />
       );
