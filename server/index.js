@@ -253,7 +253,8 @@ app.get('/api/teams/:gameId', (req, res, next) => {
         teams[data[i].teamId] = {
           teamId: data[i].teamId,
           teamName: data[i].teamName,
-          characters: {}
+          characters: {},
+          active: null
         };
         for (let j = 0; j < data.length; j++) {
           if (data[i].teamId === data[j].teamId) {
